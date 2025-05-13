@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Web de Ejercicios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #28a745;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .exercise-button {
+            display: block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px auto;
+            width: 80%;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .exercise-button:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .game-container, .counter-container, .gallery-container, .login-container, .register-container {
+            display: none;
+        }
+
+        /* Estilo para las imágenes */
+        .gallery-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            margin: 20px 0;
+            color: #333;
+            font-size: 2em;
+            text-decoration: underline;
+        }
+
+        .gallery-container div {
+            margin-bottom: 15px;
+        }
+
+        /* Fondo de la página */
+        .background-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Background image at the top -->
+    <img src="https://images.unsplash.com/photo-1563201527-bad8ff56742f" alt="Background Image" class="background-image">
+
+    <h1>Bienvenido a los Ejercicios Web</h1>
+    <button class="exercise-button" onclick="showLogin()">Iniciar Sesión</button>
+    <button class="exercise-button" onclick="showRegister()">Registrarse</button>
+    <button class="exercise-button" onclick="showCounter()">Contador de Visitas</button>
+    <button class="exercise-button" onclick="showGame()">Juego de Adivinanza</button>
+    <button class="exercise-button" onclick="showGallery()">Galería de Imágenes</button>
+    
+    <!-- Login Form -->
+    <div id="login-container" class="game-container">
+        <h2 class="section-title">Iniciar Sesión</h2>
+        <input type="text" id="login-username" placeholder="Nombre de Usuario" />
+        <input type="password" id="login-password" placeholder="Contraseña" />
+        <button class="exercise-button" onclick="login()">Iniciar Sesión</button>
+        <div id="login-error" class="error"></div>
+        <button class="exercise-button" onclick="showRegister()">¿No tienes cuenta? Regístrate aquí</button>
+    </div>
+
+    <!-- Register Form -->
+    <div id="register-container" class="game-container">
+        <h2 class="section-title">Registrarse</h2>
+        <input type="text" id="register-username" placeholder="Nombre de Usuario" />
+        <input type="password" id="register-password" placeholder="Contraseña" />
+        <input type="password" id="register-confirm-password" placeholder="Confirmar Contraseña" />
+        <button class="exercise-button" onclick="register()">Registrarse</button>
+        <div id="register-error" class="error"></div>
+        <button class="exercise-button" onclick="showLogin()">¿Ya tienes cuenta? Inicia sesión aquí</button>
+    </div>
+
+    <!-- Counter -->
+    <div id="counter-container" class="counter-container">
+        <h2 class="section-title">Contador de Visitas</h2>
+        <p>Visitas: <span id="counter">0</span></p>
+        <button class="exercise-button" onclick="showHome()">Volver al Inicio</button>
+    </div>
+
+    <!-- Game -->
+    <div id="game-container" class="game-container">
+        <h2 class="section-title">Juego de Adivinanza</h2>
+        <p>Adivina el número entre 1 y 100:</p>
+        <input type="number" id="guess" placeholder="Introduce tu número" />
+        <button class="exercise-button" onclick="checkGuess()">Adivinar</button>
+        <p id="game-message"></p>
+        <button class="exercise-button" onclick="showHome()">Volver al Inicio</button>
+    </div>
+
+    <!-- Gallery -->
+    <div id="gallery-container" class="gallery-container">
+        <h2 class="section-title">Galería de Imágenes</h2>
+        <div>
+            <img src="https://images.unsplash.com/photo-1541963468-5bcba6768421" alt="Image 1" />
+            <p>Descripción de la imagen 1</p>
+        </div>
+        <div>
+            <img src="https://images.unsplash.com/photo-1536401471445-88a13d5823da" alt="Image 2" />
+            <p>Descripción de la imagen 2</p>
+        </div>
+        <div>
+            <img src="https://images.unsplash.com/photo-1571196679576-55ed2e7be582" alt="Image 3" />
+            <p>Descripción de la imagen 3</p>
+        </div>
+        <button class="exercise-button" onclick="showHome()">Volver al Inicio</button>
+    </div>
+
+</div>
+
+<script>
+// Variables para simular registro y login
+const users = JSON.parse(localStorage.getItem('users')) || [];
+let loggedInUser = localStorage.getItem('loggedInUser');
+
+// Funciones para mostrar diferentes secciones
+
+function showHome() {
+    resetViews();
+    document.querySelector('button[onclick="showHome()"]').style.display = 'none';
+    document.querySelectorAll('.exercise-button').forEach(button => button.style.display = 'block');
+}
+
+function showLogin() {
+    resetViews();
+    document.getElementById('login-container').style.display = 'block';
+}
+
+function showRegister() {
+    resetViews();
+    document.getElementById('register-container').style.display = 'block';
+}
+
+function showCounter() {
+    resetViews();
+    let counter = parseInt(localStorage.getItem('counter') || '0');
+    document.getElementById('counter').textContent = counter + 1;
+    localStorage.setItem('counter', counter + 1);
+    document.getElementById('counter-container').style.display = 'block';
+}
+
+function showGame() {
+    resetViews();
+    document.getElementById('game-container').style.display = 'block';
+}
+
+function showGallery() {
+    resetViews();
+    document.getElementById('gallery-container').style.display = 'block';
+}
+
+// Funciones para simular Login y Registro
+
+function login() {
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+    const user = users.find(user => user.username === username && user.password === password);
+
+    if (user) {
+        loggedInUser = user.username;
+        localStorage.setItem('loggedInUser', loggedInUser);
+        showHome();
+    } else {
+        document.getElementById('login-error').textContent = "Error de credenciales";
+    }
+}
+
+function register() {
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
+    const confirmPassword = document.getElementById('register-confirm-password').value;
+
+    if (password !== confirmPassword) {
+        document.getElementById('register-error').textContent = "Las contraseñas no coinciden";
+    } else if (users.find(user => user.username === username)) {
+        document.getElementById('register-error').textContent = "El nombre de usuario ya está en uso";
+    } else {
+        users.push({ username, password });
+        localStorage.setItem('users', JSON.stringify(users));
+        showLogin();
+    }
+}
+
+// Juego de adivinanza
+function checkGuess() {
+    const guess = parseInt(document.getElementById('guess').value);
+    const answer = 42;
+
+    if (guess === answer) {
+        document.getElementById('game-message').textContent = "¡Felicidades! Has adivinado correctamente.";
+    } else {
+        document.getElementById('game-message').textContent = "Intenta de nuevo.";
+    }
+}
+
+// Resetear vistas
+function resetViews() {
+    document.getElementById('login-container').style.display = 'none';
+    document.getElementById('register-container').style.display = 'none';
+    document.getElementById('counter-container').style.display = 'none';
+    document.getElementById('game-container').style.display = 'none';
+    document.getElementById('gallery-container').style.display = 'none';
+    document.querySelectorAll('.exercise-button').forEach(button => button.style.display = 'none');
+}
+</script>
+
+</body>
+</html>
